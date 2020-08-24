@@ -87,10 +87,10 @@ public class Grid {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		for(int row = numRows-1; row >= 0; row--) {
+			builder.append("\n");
 			for(int column = 0; column < numColumns; column++) {
 				builder.append(content[getIndex(new Coordinate(column, row))]);
 			}
-			builder.append("\n");
 		}
 		/*return "Grid has " + numRows + " rows and " + numColumns + " columns.\n"
 				+ "It\'s content has" + (randomizedContent ? "" : " NOT") + " been randomized.\n"

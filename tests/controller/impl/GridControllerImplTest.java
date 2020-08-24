@@ -39,7 +39,7 @@ class GridControllerImplTest {
 		gridController.setRoverPosition(new Coordinate(0,1));
 		grid = gridController.printGrid();
 		assertEquals(true, grid.contains(String.valueOf(GridContent.ROVER.getCode())));
-		assertEquals(true, String.valueOf(grid.charAt(102)).equals(String.valueOf(GridContent.ROVER.getCode())));
+		assertEquals(true, String.valueOf(grid.charAt(103)).equals(String.valueOf(GridContent.ROVER.getCode())));
 	}
 
 }

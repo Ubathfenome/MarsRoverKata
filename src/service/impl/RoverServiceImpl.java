@@ -11,6 +11,7 @@ import controller.impl.RoverControllerImpl;
 import exceptions.ObstacleException;
 import exceptions.RoverNotInitializedException;
 import model.Coordinate;
+import model.Orientation;
 import service.RoverService;
 
 public class RoverServiceImpl implements RoverService{
@@ -42,7 +43,7 @@ public class RoverServiceImpl implements RoverService{
 		if(movementDone != null) {
 			LOG.info(movementDone ? "The rover moved successfully" : "There was an error on the last movement");
 		}
-		System.out.println(gridController.printGrid());
+		LOG.info(prettyPrint(gridController.printGrid()));
 	}
 
 	@Override
@@ -55,7 +56,28 @@ public class RoverServiceImpl implements RoverService{
 		LOG.info("Randomizing grid content");
 		gridController.randomizeContent();
 		LOG.info("Grid content randomized");
-		System.out.println(gridController.printGrid());
+		LOG.info(prettyPrint(gridController.printGrid()));
+	}
+	
+	private String prettyPrint(String grid) {
+		Orientation orientation = Orientation.valueOf(roverController.checkPosition().split("facing ")[1]);
+		String face = "";
+		switch(orientation) {
+		case NORTH:
+			face = "^";
+			break;
+		case EAST:
+			face = ">";
+			break;
+		case SOUTH:
+			face = "v";
+			break;
+		case WEST:
+			face = "<";
+			break;
+		}
+		
+		return grid.replace("0", ".").replace("2", "X").replace("1", face);
 	}
 
 }
